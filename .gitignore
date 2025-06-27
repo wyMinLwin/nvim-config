@@ -1,0 +1,41 @@
+# Swap and backup files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Undo history
+undo/
+*.un~
+
+# Neovim logs and sessions
+log/
+*.log
+*.session
+
+# Lazy.nvim build/cache files (if you use lazy.nvim)
+lazy-lock.json
+lua/**/lazy-lock.json
+**/.cache/
+**/.data/
+
+# Packer.nvim (if you're still using it)
+packer_compiled.lua
+
+# Mason and LSP stuff
+mason/
+lua-language-server/
+*.json
+
+# Telescope history
+lua/**/telescope_history.sqlite3
+
+# Node or Python stuff (if using with LSP/formatters)
+node_modules/
+__pycache__/
+*.pyc
+.env
+
+# Personal local-only config (optional)
+local.lua
+
