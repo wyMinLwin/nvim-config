@@ -13,13 +13,14 @@ require('telescope').setup{
     find_files = {
       theme = "dropdown",
     }
-  },
+},
 }
+
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
+vim.keymap.set('n', '<leader>n',':Neotree filesystem reveal right git_base=HEAD git_status<CR>',{})
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "javascript", "typescript", "svelte", "rust", "css", "c_sharp" },
