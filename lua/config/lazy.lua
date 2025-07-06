@@ -25,7 +25,15 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
+    --{ "rebelot/kanagawa.nvim", priority = 1000 , config = true},
+    
+    {
+        'marko-cerovac/material.nvim',
+        config = function()
+            vim.cmd([[colorscheme material]])
+            require('material.functions').change_style("darker")
+        end,
+    },
     {
     'nvim-telescope/telescope.nvim', tag = '0.1.8',
 -- or                              , branch = '0.1.x',
@@ -47,6 +55,10 @@ require("lazy").setup({
         opts = {
             -- fill any relevant options here
         },
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
       -- import your plugins
     { import = "plugins" },

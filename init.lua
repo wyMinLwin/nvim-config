@@ -4,23 +4,52 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
 require("config.lazy")
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
+--vim.o.background = "dark" -- or "light" for light mode
+--vim.cmd([[colorscheme kanagawa]])
 
 local builtin = require('telescope.builtin')
 require('telescope').setup{
   pickers = {
-    find_files = {
+    git_files = {
       theme = "dropdown",
     }
 },
 }
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+require("neo-tree").setup({
+  sources = { "filesystem", "git_status", "buffers" }, -- this line is important
+  filesystem = {
+    follow_current_file = { enabled = true }, -- optional: focus current file
+    use_libuv_file_watcher = true,            -- auto-update files
+    filtered_items = {
+      hide_gitignored = false,                -- show .gitignored files if needed
+    },
+  },
+  default_component_configs = {
+    git_status = {
+      symbols = {
+        added     = "A",
+        modified  = "M",
+        deleted   = "D",
+        renamed   = "R",
+        untracked = "?",
+        ignored   = "◌",
+        unstaged  = "✗",
+        staged    = "✓",
+        conflict  = "",
+      }
+    }
+  }
+})
+
+--vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>ff', function()
+  builtin.git_files({ show_untracked = true })
+end, { desc = 'Telescope git files (tracked + untracked, .gitignore respected)' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-vim.keymap.set('n', '<leader>n',':Neotree filesystem reveal right git_base=HEAD git_status<CR>',{})
+vim.keymap.set('n', '<leader>n',':Neotree filesystem reveal left<CR>',{})
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "javascript", "typescript", "svelte", "rust", "css", "c_sharp" },
@@ -62,3 +91,6 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+require('lualine').setup()
+
