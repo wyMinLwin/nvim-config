@@ -24,43 +24,6 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    
-    --{ "rebelot/kanagawa.nvim", priority = 1000 , config = true},
-    
-    {
-        'marko-cerovac/material.nvim',
-        config = function()
-            vim.cmd([[colorscheme material]])
-            require('material.functions').change_style("darker")
-        end,
-    },
-    {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
--- or                              , branch = '0.1.x',
-      dependencies = { 'nvim-lua/plenary.nvim' }
-    },
-    {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"},
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-            -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
-        },
-        lazy = false, -- neo-tree will lazily load itself
-        ---@module "neo-tree"
-        ---@type neotree.Config?
-        opts = {
-            -- fill any relevant options here
-        },
-    },
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
-      -- import your plugins
     { import = "plugins" },
   },
   -- Configure any other settings here. See the documentation for more details.
