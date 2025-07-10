@@ -4,6 +4,7 @@ return {
         opts = {},
         config = function()
             require("mason").setup()
+            vim.keymap.set('n', '<leader>ms',':Mason<CR>',{})
         end
     },
     {
@@ -31,6 +32,18 @@ return {
             require("lspconfig").lua_ls.setup({})
             require("lspconfig").rust_analyzer.setup({})
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
+            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {})
+
+            vim.diagnostic.config({
+              virtual_text = {
+                prefix = "●",  -- or "", "▶", "", etc.
+                spacing = 4,
+              },
+              signs = true,
+              underline = true,
+              update_in_insert = false,
+              severity_sort = true,
+            })
         end
     }
 }

@@ -13,7 +13,7 @@ return {
     opts = {
         -- fill any relevant options here
     },
-    config = function() 
+    config = function()
         require("neo-tree").setup({
             sources = { "filesystem", "git_status", "buffers" }, -- this line is important
             filesystem = {
@@ -39,5 +39,6 @@ return {
                 }
             }
         })
+        vim.keymap.set('n', '<leader>n',':Neotree filesystem reveal left<CR>',{})
     end
 }
