@@ -6,14 +6,14 @@ return {
             local builtin = require('telescope.builtin')
             require('telescope').setup{
               pickers = {
-                git_files = {
+                find_files = {
                   theme = "dropdown",
                 }
             },
             }
             --vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
             vim.keymap.set('n', '<leader>ff', function()
-              builtin.git_files({ show_untracked = true })
+              builtin.find_files()
             end, { desc = 'Telescope git files (tracked + untracked, .gitignore respected)' })
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
             vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
