@@ -18,7 +18,7 @@ return {
 		dependencies = {
 			{
 				"folke/lazydev.nvim",
-				-- ft = "lua", -- only load on lua files
+				version = "*",
 				opts = {
 					library = {
 						-- See the configuration section for more details
@@ -35,6 +35,14 @@ return {
 			conf.lua_ls.setup({})
 			conf.rust_analyzer.setup({})
 			conf.prettier.setup({})
+			conf.eslint.setup({
+				settings = {
+					validate = "on",
+					experimental = {
+						useFlatConfig = true, -- ✅ Required if you're using eslint.config.js
+					},
+				},
+			})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 
