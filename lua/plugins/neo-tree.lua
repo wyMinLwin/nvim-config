@@ -20,7 +20,8 @@ return {
                 follow_current_file = { enabled = true }, -- optional: focus current file
                 use_libuv_file_watcher = true,            -- auto-update files
                 filtered_items = {
-                    hide_gitignored = false,                -- show .gitignored files if needed
+                    hide_gitignored = false,-- show .gitignored files if needed
+                    hide_dotfiles = false,
                 },
             },
             default_component_configs = {

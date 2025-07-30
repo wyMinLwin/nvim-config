@@ -10,7 +10,7 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = { "lua_ls", "rust_analyzer", "svelte-language-server", "eslint-lsp", "pyright" },
+			ensure_installed = { "lua_ls", "rust_analyzer", "svelte", "eslint", "pyright", "ast_grep" },
 		},
 	},
 	{
@@ -43,6 +43,7 @@ return {
 					},
 				},
 			})
+            conf.ast_grep.setup({})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 
