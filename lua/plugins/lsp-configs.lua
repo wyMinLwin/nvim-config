@@ -21,8 +21,6 @@ return {
 				version = "*",
 				opts = {
 					library = {
-						-- See the configuration section for more details
-						-- Load luvit types when the `vim.uv` word is found
 						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 					},
 				},
@@ -31,19 +29,18 @@ return {
 
 		config = function()
 			local conf = require("lspconfig")
-
 			conf.lua_ls.setup({})
 			conf.rust_analyzer.setup({})
-			conf.prettier.setup({})
 			conf.eslint.setup({
 				settings = {
 					validate = "on",
 					experimental = {
-						useFlatConfig = true, -- ✅ Required if you're using eslint.config.js
+						useFlatConfig = true,
 					},
+					workingDirectory = { mode = "location" },
 				},
 			})
-            conf.ast_grep.setup({})
+			conf.ast_grep.setup({})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 
