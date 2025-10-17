@@ -28,10 +28,11 @@ return {
 		},
 
 		config = function()
-			local conf = require("lspconfig")
-			conf.lua_ls.setup({})
-			conf.rust_analyzer.setup({})
-			conf.eslint.setup({
+			vim.lsp.config("lua_ls", {})
+			-- Enable the server (so it auto-activates on its filetypes)
+			vim.lsp.enable("lua_ls")
+			vim.lsp.config("rust_analyzer", {})
+			vim.lsp.config("eslint_d", {
 				settings = {
 					validate = "on",
 					experimental = {
@@ -40,13 +41,13 @@ return {
 					workingDirectory = { mode = "location" },
 				},
 			})
-			conf.ast_grep.setup({})
+			vim.lsp.config("ast_grep", {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 
 			vim.diagnostic.config({
 				virtual_text = {
-					prefix = "●", -- or "", "▶", "", etc.
+					prefix = "●",
 					spacing = 4,
 				},
 				signs = true,
