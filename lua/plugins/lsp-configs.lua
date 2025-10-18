@@ -25,12 +25,15 @@ return {
 					},
 				},
 			},
+			{ "saghen/blink.cmp" },
 		},
 
 		config = function()
-			vim.lsp.config("lua_ls", {})
-			-- Enable the server (so it auto-activates on its filetypes)
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			vim.lsp.config("lua_ls", { capabilities = capabilities })
 			vim.lsp.enable("lua_ls")
+
 			vim.lsp.config("rust_analyzer", {})
 			vim.lsp.config("eslint_d", {
 				settings = {
@@ -48,13 +51,12 @@ return {
 			vim.diagnostic.config({
 				virtual_text = {
 					prefix = "●",
-					spacing = 4,
-				},
-				signs = true,
-				underline = true,
-				update_in_insert = false,
-				severity_sort = true,
-			})
-		end,
-	},
+			  spacing = 4,
+		  },
+		  signs = true,
+		  underline = true,
+		  update_in_insert = false,
+		  severity_sort = true,
+	  })
+  end,  },
 }
