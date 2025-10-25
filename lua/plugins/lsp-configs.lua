@@ -34,6 +34,9 @@ return {
 			vim.lsp.config("lua_ls", { capabilities = capabilities })
 			vim.lsp.enable("lua_ls")
 
+			vim.lsp.config("pyright", { capabilities = capabilities })
+			vim.lsp.enable("pyright")
+
 			vim.lsp.config("rust_analyzer", {})
 			vim.lsp.config("eslint_d", {
 				settings = {
@@ -43,6 +46,7 @@ return {
 					},
 					workingDirectory = { mode = "location" },
 				},
+                capabilities = capabilities
 			})
 			vim.lsp.config("ast_grep", {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
