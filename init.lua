@@ -4,3 +4,6 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.o.number = true
 require("config.lazy")
+
+vim.opt.list = true
+
