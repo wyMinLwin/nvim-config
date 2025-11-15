@@ -16,6 +16,9 @@ return {
     config = function()
         require("neo-tree").setup({
             sources = { "filesystem", "git_status", "buffers" }, -- this line is important
+            window = {
+                width = 35,
+            },
             filesystem = {
                 follow_current_file = { enabled = true }, -- optional: focus current file
                 use_libuv_file_watcher = true,            -- auto-update files
