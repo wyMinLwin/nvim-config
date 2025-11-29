@@ -10,7 +10,7 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "rust_analyzer", "svelte", "eslint", "pyright", "ast_grep" },
+            ensure_installed = { "lua_ls", "svelte", "eslint", "eslint_d", "pyright",  },
         },
     },
     {
@@ -37,8 +37,6 @@ return {
             vim.lsp.config("pyright", { capabilities = capabilities })
             vim.lsp.enable("pyright")
 
-            vim.lsp.config("rust_analyzer", {})
-
             vim.lsp.config("eslint", {
                 settings = {
                     validate = "on",
@@ -50,8 +48,6 @@ return {
                 capabilities = capabilities,
             })
             vim.lsp.enable("eslint")
-
-            vim.lsp.config("ast_grep", {})
 
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
             vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})

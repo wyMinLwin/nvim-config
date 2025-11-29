@@ -1,10 +1,10 @@
 return {
-    'goolord/alpha-nvim',
+    "goolord/alpha-nvim",
     requires = {
-        'echasnovski/mini.icons',
-        'nvim-lua/plenary.nvim'
+        "echasnovski/mini.icons",
+        "nvim-lua/plenary.nvim",
     },
-    config = function ()
-        require'alpha'.setup(require'alpha.themes.dashboard'.config)
-    end
+    config = function()
+        require("alpha").setup(require("alpha.themes.dashboard").config)
+    end,
 }
