@@ -10,7 +10,7 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "svelte", "eslint", "eslint_d", "pyright",  },
+            ensure_installed = { "lua_ls", "svelte", "eslint", "pyright" },
         },
     },
     {
@@ -37,6 +37,9 @@ return {
             vim.lsp.config("pyright", { capabilities = capabilities })
             vim.lsp.enable("pyright")
 
+            vim.lsp.config("svelte", { capabilities = capabilities })
+            vim.lsp.enable("svelte")
+
             vim.lsp.config("eslint", {
                 settings = {
                     validate = "on",
@@ -49,8 +52,20 @@ return {
             })
             vim.lsp.enable("eslint")
 
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-            vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
+            -- LSP keymaps only active in buffers with an attached server
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local opts = { buffer = args.buf }
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+                    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+                    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+                end,
+            })
 
             vim.diagnostic.config({
                 virtual_text = {

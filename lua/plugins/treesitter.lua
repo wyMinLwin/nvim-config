@@ -22,7 +22,7 @@ return {
                 "css",
                 "c_sharp",
                 "python",
-                "html"
+                "html",
             },
 
             sync_install = false,
